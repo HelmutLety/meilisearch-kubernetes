@@ -1,6 +1,6 @@
 # Meilisearch
 
-A chart to deploy [Meilisearch](https://github.com/meilisearch/MeiliSearch) search engine
+A Helm chart, ready to deploy [Meilisearch](https://github.com/meilisearch/MeiliSearch) search engine on your Kubernetes cluster.
 
 ## Installation
 
@@ -19,7 +19,6 @@ To uninstall/delete the `my-release` deployment:
 ```bash
 helm delete my-release
 ```
-
 
 ## Parameters
 
@@ -78,3 +77,37 @@ helm delete my-release
 The `environment` block allows to specify all the environment variables declared on [MeiliSearch Configuration](https://docs.meilisearch.com/guides/advanced_guides/configuration.html#passing-arguments-via-the-command-line)
 
 For production deployment, the `environment.MEILI_MASTER_KEY` is required
+
+# Getting started
+
+First of all, you will need a Kubernetes cluster up and running. If you are not familiar with how Kuberentes works or need some help with this step, please check the [Kubernetes documentation](https://kubernetes.io/docs/home/).
+
+## Install kubectl and helm on your local machine
+
+`kubectl` is the most commonly used CLI to handle a Kubernetes cluster. The installation instructions are [available here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+[k8s configuration file or using the flag]
+
+`helm`...
+
+## Install MeiliSearch chart on your cluster
+
+## How to expose MeiliSearch
+
+[load balancer]
+
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-load-balancer
+spec:
+  selector:
+    app.kubernetes.io/name: meilisearch
+  ports:
+    - port: 7700
+      targetPort: 7700
+      protocol: TCP
+  type: LoadBalancer
+```
